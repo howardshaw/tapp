@@ -74,7 +74,10 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 	return c.tracker
 }
 
-var _ clientset.Interface = &Clientset{}
+var (
+	_ clientset.Interface = &Clientset{}
+	_ testing.FakeClient  = &Clientset{}
+)
 
 // TappcontrollerV1 retrieves the TappcontrollerV1Client
 func (c *Clientset) TappcontrollerV1() tappcontrollerv1.TappcontrollerV1Interface {

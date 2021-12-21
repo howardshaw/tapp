@@ -26,8 +26,10 @@ import (
 )
 
 // TAppLister helps list TApps.
+// All objects returned here must be treated as read-only.
 type TAppLister interface {
 	// List lists all TApps in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1.TApp, err error)
 	// TApps returns an object that can list and get TApps.
 	TApps(namespace string) TAppNamespaceLister
@@ -58,10 +60,13 @@ func (s *tAppLister) TApps(namespace string) TAppNamespaceLister {
 }
 
 // TAppNamespaceLister helps list and get TApps.
+// All objects returned here must be treated as read-only.
 type TAppNamespaceLister interface {
 	// List lists all TApps in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1.TApp, err error)
 	// Get retrieves the TApp from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1.TApp, error)
 	TAppNamespaceListerExpansion
 }
